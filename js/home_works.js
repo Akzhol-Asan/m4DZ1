@@ -16,7 +16,8 @@ gmailButton.onclick = () => {
   }
 };
 
-//HOMEWORK 1 (PART 2 - MOVE BLOCK) + HOME WORK 2
+//HOMEWORK 1 (PART 2 - MOVE BLOCK)
+//HOMEWORK 2
 
 const childBlock = document.querySelector("#child_block");
 const parentBlock = document.querySelector(".parent_block");
@@ -39,3 +40,32 @@ const move = () => {
 };
 
 move();
+
+//HOMEWORK 2 (TIMER)
+const timer = document.querySelector("#seconds");
+const startButton = document.querySelector("#start");
+const stopButton = document.querySelector("#stop");
+const resetButton = document.querySelector("#reset");
+
+let seconds = 0;
+let interval = null;
+
+startButton.onclick = () => {
+  if (interval) return;
+  interval = setInterval(() => {
+    seconds++;
+    requestAnimationFrame((timer.innerText = seconds));
+  }, 1000);
+};
+
+stopButton.onclick = () => {
+  clearInterval(interval);
+  interval = null;
+};
+
+resetButton.onclick = () => {
+  clearInterval(interval);
+  seconds = 0;
+  interval = null;
+  requestAnimationFrame((timer.innerText = seconds));
+};
