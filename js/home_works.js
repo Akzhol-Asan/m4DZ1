@@ -16,18 +16,26 @@ gmailButton.onclick = () => {
   }
 };
 
-//HOMEWORK 1 (PART 2)
+//HOMEWORK 1 (PART 2 - MOVE BLOCK) + HOME WORK 2
 
 const childBlock = document.querySelector("#child_block");
+const parentBlock = document.querySelector(".parent_block");
 
-let distance = 0;
+const width = parentBlock.clientWidth - childBlock.offsetWidth;
+const height = parentBlock.clientHeight - childBlock.offsetHeight;
+
+let distanceX = 0;
+let distanceY = 0;
 
 const move = () => {
-  if (distance < 450) {
-    distance++;
-    childBlock.style.left = distance + "px";
-    requestAnimationFrame(move);
-  }
+  if (distanceX < width && distanceY === 0) distanceX++;
+  else if (distanceX === width && distanceY < height) distanceY++;
+  else if (distanceX > 0 && distanceY === height) distanceX--;
+  else if (distanceX === 0 && distanceY > 0) distanceY--;
+
+  childBlock.style.left = `${distanceX}px`;
+  childBlock.style.top = `${distanceY}px`;
+  requestAnimationFrame(move);
 };
 
 move();
